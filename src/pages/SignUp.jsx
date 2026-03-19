@@ -1,10 +1,9 @@
-import React from 'react'
-import navbar from 'daisyui/components/navbar'
-import NavBar from '../components/NavBar';
-
+import MainLayout from "../layouts/MainLayout";
 const SignUp = () => {
     return (
-        <NavBar />
+        <MainLayout>
+            <div></div>
+        </MainLayout>
     )
 };
 
