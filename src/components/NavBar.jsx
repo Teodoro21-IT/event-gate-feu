@@ -3,6 +3,7 @@ import { NavLink } from "react-router";
 import SignUpIcon from "./icons/SignUpIcon";
 import HomeIcon from "./icons/HomeIcon";
 
+
 const NavBar = () => {
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -24,6 +25,10 @@ const NavBar = () => {
                     <NavLink to="/sign-up" className="btn btn-primary mr-4 rounded-full">
                         <SignUpIcon className="text-lg" />
                         Sign Up
+                    </NavLink>
+                    <NavLink to="/login" className="btn btn-primary mr-4 rounded-full">
+                        <SignUpIcon className="text-lg" />
+                        Login
                     </NavLink>
                     <div className="dropdown dropdown-end">
                         <div
