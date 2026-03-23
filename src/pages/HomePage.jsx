@@ -39,7 +39,7 @@ const HomePage = () => {
     return (
         <MainLayout>
             <div style={{ padding: "20px" }}>
-                <h1>Animal Dashboard</h1>
+                <h1>ONE PIECE </h1>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
                     {animals.map((animal) => (
                         <div
