@@ -20,7 +20,7 @@ const SignUp = () => {
         const { data, error } = await supabase.auth.signUp({
             email: signupform.email,
             password: signupform.password,
-            phone: signupform.phone,
+
         });
         if (error) { alert(error) }
         if (data) { console.log(data) };
@@ -70,4 +70,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp
+export default SignUp;

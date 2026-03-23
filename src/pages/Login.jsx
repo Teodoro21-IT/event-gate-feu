@@ -1,75 +1,53 @@
-import React, { useState } from 'react';
-import MainLayout from '../layouts/MainLayout';
+import Input from "../components/form/Input";
+import MainLayout from "../layouts/MainLayout";
+import Card from "../components/Card";
+import supabase from "../utils/supabase";
+import SendIcon from "../components/icons/SendIcon";
+import { CiLogin } from "react-icons/ci";
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const loginform = {
+            email: formData.get("email"),
+            password: formData.get("password"),
+        };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Logging in with:', { email, password });
+
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: loginform.email,
+            password: loginform.password,
+        });
+        if (error) { alert(error) }
+        if (data) { console.log(data) };
     };
-
     return (
-
         <MainLayout>
-            <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-                <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-                    <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
-                        Welcome Back
-                    </h2>
+            <div className="min-h-screen flex flex-col">
+                <div className="flex justify-center items-center flex-1">
+                    <Card>
+                        <h1 className="text-xl font-bold">Login</h1>
+                        <form onSubmit={handleSubmit}>
 
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Email Address
-                            </label>
-                            <input
+                            <Input
+                                name="email"
+                                placeholder="Enter your Email"
+                                label="Email"
                                 type="email"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                                placeholder="name@company.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
                             />
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Password
-                            </label>
-                            <input
+                            <Input
+                                name="password"
+                                placeholder="Enter your Password"
+                                label="Password"
                                 type="password"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                                placeholder="••••••••"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
                             />
-                        </div>
+                            <button className="btn btn-primary rounded-full mt-5">
+                                <CiLogin /> Submit
+                            </button>
 
-                        <div className="flex items-center justify-between text-sm">
-                            <label className="flex items-center text-gray-600">
-                                <input type="checkbox" className="mr-2 rounded border-gray-300" />
-                                Remember me
-                            </label>
-                            <a href="#" className="text-blue-600 hover:underline">Forgot password?</a>
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg shadow-md transition-colors"
-                        >
-                            Sign In
-                        </button>
-                    </form>
-
-                    <p className="mt-6 text-center text-sm text-gray-600">
-                        Don't have an account? {' '}
-                        <a href="#" className="text-blue-600 font-medium hover:underline">
-                            Create one
-                        </a>
-                    </p>
+                        </form>
+                    </Card>
                 </div>
             </div>
         </MainLayout>

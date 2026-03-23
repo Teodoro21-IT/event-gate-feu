@@ -4,10 +4,15 @@ import SignUpIcon from "./icons/SignUpIcon";
 import HomeIcon from "./icons/HomeIcon";
 import { useContext } from "react";
 import { SessionContext } from "../contexts/SessionContext";
-
+import supabase from "../utils/supabase";
 
 const NavBar = () => {
     const session = useContext(SessionContext);
+
+    const handleLogout = async () => {
+        const { error } = await supabase.auth.signOut();
+        if (error) alert("kupal mali");
+    };
 
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -33,6 +38,7 @@ const NavBar = () => {
                             <SignUpIcon className="text-lg" />
                             Sign Up
                         </NavLink>
+
                     )}
                     <NavLink to="/login" className="btn btn-primary mr-4 rounded-full">
                         <SignUpIcon className="text-lg" />
@@ -66,7 +72,7 @@ const NavBar = () => {
                                 <a>Settings</a>
                             </li>
                             <li>
-                                <a>Logout</a>
+                                <button onClick={handleLogout}>Logout</button>
                             </li>
                         </ul>
                     </div>

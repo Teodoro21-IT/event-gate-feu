@@ -36,6 +36,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+
       </Routes>
     </SessionContext.Provider >
 

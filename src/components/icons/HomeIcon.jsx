@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaHome } from "react-icons/fa";
-const props = {
 
+const props = {
 };
 const HomeIcon = () => {
     return (
