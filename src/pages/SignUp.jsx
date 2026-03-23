@@ -1,23 +1,26 @@
-import Input from '../components/form/Input';
-import MainLayout from '../layouts/MainLayout';
+import Input from "../components/form/Input";
+import MainLayout from "../layouts/MainLayout";
+import Card from "../components/Card";
+import SignUpIcon from "../components/icons/SignUpIcon";
+import SendIcon from "../components/icons/SendIcon";
 
-const SignUpPage = () => {
+const SignUp = () => {
     return (
-        <div className="flex flex-col min-h-screen">
-            <MainLayout>
-
-                <div className="flex flex-1 items-center justify-center p-4">
-                    <div className="w-full max-w-md">
+        <MainLayout>
+            <div className="min-h-screen flex flex-col">
+                <div className="flex justify-center items-center flex-1">
+                    <Card>
+                        <h1 className="text-xl font-bold">Sign Up</h1>
                         <Input
                             name="firstname"
                             placeholder="Enter your First Name"
-                            label="First Name"
+                            label="Firstname"
                             type="text"
                         />
                         <Input
                             name="lastname"
                             placeholder="Enter your Last Name"
-                            label="Last Name"
+                            label="Lastname"
                             type="text"
                         />
                         <Input
@@ -33,11 +36,14 @@ const SignUpPage = () => {
                             type="password"
                         />
 
-                    </div>
+                        <button className="btn btn-primary rounded-full mt-5">
+                            <SendIcon /> Submit
+                        </button>
+                    </Card>
                 </div>
-            </MainLayout>
-        </div>
+            </div>
+        </MainLayout>
     );
 };
 
-export default SignUpPage;
+export default SignUp;
