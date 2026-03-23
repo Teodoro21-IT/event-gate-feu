@@ -11,6 +11,7 @@ const SignUp = () => {
         const signupform = {
             firstname: formData.get("firstname"),
             lastname: formData.get("lastname"),
+
             email: formData.get("email"),
             password: formData.get("password"),
         };
@@ -19,6 +20,7 @@ const SignUp = () => {
         const { data, error } = await supabase.auth.signUp({
             email: signupform.email,
             password: signupform.password,
+            phone: signupform.phone,
         });
         if (error) { alert(error) }
         if (data) { console.log(data) };
@@ -41,7 +43,9 @@ const SignUp = () => {
                                 placeholder="Enter your Last Name"
                                 label="Lastname"
                                 type="text"
+
                             />
+
                             <Input
                                 name="email"
                                 placeholder="Enter your Email"
