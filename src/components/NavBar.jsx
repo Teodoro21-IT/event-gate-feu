@@ -40,10 +40,15 @@ const NavBar = () => {
                         </NavLink>
 
                     )}
-                    <NavLink to="/login" className="btn btn-primary mr-4 rounded-full">
-                        <SignUpIcon className="text-lg" />
-                        Login
-                    </NavLink>
+
+
+                    {!session && (
+                        <NavLink to="/login" className="btn btn-primary mr-4 rounded-full">
+                            <SignUpIcon className="text-lg" />
+                            Login
+                        </NavLink>
+
+                    )}
 
                     <div className="dropdown dropdown-end">
                         <div

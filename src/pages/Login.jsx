@@ -2,10 +2,23 @@ import Input from "../components/form/Input";
 import MainLayout from "../layouts/MainLayout";
 import Card from "../components/Card";
 import supabase from "../utils/supabase";
-import SendIcon from "../components/icons/SendIcon";
 import { CiLogin } from "react-icons/ci";
+import { useContext, useEffect } from "react";
+import { SessionContext } from "../contexts/SessionContext";
+import { useNavigate } from "react-router";
 
 const Login = () => {
+    const session = useContext(SessionContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (session) {
+            navigate("/");
+        }
+    }, [session, navigate]);
+
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -22,6 +35,11 @@ const Login = () => {
         if (error) { alert(error) }
         if (data) { console.log(data) };
     };
+
+
+
+
+
     return (
         <MainLayout>
             <div className="min-h-screen flex flex-col">
