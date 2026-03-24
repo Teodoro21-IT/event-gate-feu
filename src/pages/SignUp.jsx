@@ -3,8 +3,24 @@ import MainLayout from "../layouts/MainLayout";
 import Card from "../components/Card";
 import supabase from "../utils/supabase";
 import SendIcon from "../components/icons/SendIcon";
+import { useContext, useEffect } from "react";
+import { SessionContext } from "../contexts/SessionContext";
+import { useNavigate } from "react-router";
+
+
 
 const SignUp = () => {
+    // hook in react to get the current session and navigate function
+    const session = useContext(SessionContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (session) {
+            navigate("/");
+        }
+    }, [session, navigate]);
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
