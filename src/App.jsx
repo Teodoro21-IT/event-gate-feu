@@ -6,6 +6,8 @@ import Login from './pages/Login';
 import { useState, useEffect } from 'react';
 import supabase from './utils/supabase';
 import { SessionContext } from './contexts/SessionContext';
+import Profile from './pages/Profile';
+import EditProfile from './pages/EditProfile';
 
 function App() {
 
@@ -36,6 +38,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
 
       </Routes>
     </SessionContext.Provider >
