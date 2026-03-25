@@ -54,22 +54,10 @@ const NavBar = () => {
                                 }`
                             }
                         >
-                            <span>Dashboard</span>
+                            <span>Overview</span>
                             <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
                         </NavLink>
 
-                        {profile?.role === "admin" && (
-                            <NavLink
-                                to="/manage-events"
-                                className={({ isActive }) =>
-                                    `group relative px-4 py-2 text-sm font-bold tracking-tight transition-all ${isActive ? 'text-primary' : 'text-base-content/60 hover:text-base-content'
-                                    }`
-                                }
-                            >
-                                <span>Manage Events</span>
-                                <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-                            </NavLink>
-                        )}
 
                         <div className="h-6 w-[1px] bg-base-content/10 mx-2 hidden md:block"></div>
 
