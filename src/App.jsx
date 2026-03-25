@@ -35,23 +35,6 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select()
-        .eq("id", session.user.id)
-        .single();
-
-      if (error) console.error(error);
-      if (data) setProfile(data);
-      setLoading(false);
-    }
-
-    if (session) {
-      fetchProfile();
-    }
-  }, [session]);
 
 
   return (

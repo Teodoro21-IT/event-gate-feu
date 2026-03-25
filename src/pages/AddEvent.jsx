@@ -2,12 +2,23 @@ import React from "react";
 import MainLayout from "../layouts/MainLayout";
 import Input from "../components/form/Input";
 import supabase from "../utils/supabase";
+import { SessionContext } from "../contexts/SessionContext";
+import { useNavigate } from "react-router";
+import { useContext } from "react";
+
 
 const AddEvent = () => {
+
+    const { session } = useContext(SessionContext);
+    const navigate = useNavigate();
+
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
         const formDataObject = Object.fromEntries(formData.entries());
+
 
         const { data: eventData, error: eventError } = await supabase
             .from("events")
@@ -16,7 +27,10 @@ const AddEvent = () => {
             .single();
         if (eventError) alert(eventError);
         if (eventData) console.log(eventData);
+        navigate("/manage-events");
     };
+
+
 
     return (
         <MainLayout>

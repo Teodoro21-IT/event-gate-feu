@@ -11,7 +11,7 @@ import { useNavigate } from "react-router";
 
 const SignUp = () => {
     // hook in react to get the current session and navigate function
-    const { session } = useContext(SessionContext);
+    const session = useContext(SessionContext);
     const navigate = useNavigate();
 
     useEffect(() => {
