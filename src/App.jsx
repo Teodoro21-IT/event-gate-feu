@@ -53,7 +53,7 @@ function App() {
 
   return (
 
-    <SessionContext.Provider value={{ session, profile }} >
+    <SessionContext.Provider value={{ session, profile, setProfile }} >
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/sign-up" element={<SignUp />} />

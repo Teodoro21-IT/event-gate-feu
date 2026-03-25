@@ -9,7 +9,7 @@ import { useNavigate } from "react-router";
 
 
 const EditProfile = () => {
-    const { session, profile } = useContext(SessionContext);
+    const { session, profile, setProfile } = useContext(SessionContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
@@ -30,11 +30,13 @@ const EditProfile = () => {
                 email: signupForm.email,
             })
             .eq("id", session.user.id)
-            .select();
+            .select()
+            .single();
 
         if (profileError) alert(profileError);
         if (profileData) {
             navigate("/profile");
+            setProfile(profileData);
         }
     };
 
