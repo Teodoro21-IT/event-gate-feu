@@ -8,49 +8,36 @@ import { SessionContext } from "../contexts/SessionContext";
 import { useNavigate } from "react-router";
 
 
-
 const EditProfile = () => {
-    // hook in react to get the current session and navigate function
-    const session = useContext(SessionContext);
+    const { session, profile } = useContext(SessionContext);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (session) {
-            navigate("/");
-        }
-    }, [session, navigate]);
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const signupform = {
+        const signupForm = {
             firstname: formData.get("firstname"),
             lastname: formData.get("lastname"),
             email: formData.get("email"),
             password: formData.get("password"),
         };
 
+        const { data: profileData, error: profileError } = await supabase
+            .from("profiles")
+            .update({
+                firstname: signupForm.firstname,
+                lastname: signupForm.lastname,
+                email: signupForm.email,
+            })
+            .eq("id", session.user.id)
+            .select();
 
-        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-            email: signupform.email,
-            password: signupform.password,
-        });
-
-        if (signUpError) { alert(signUpError) }
-        if (signUpData) {
-            const { data: profileData, error: profileError } = await
-                supabase.from("profiles")
-                    .insert({
-                        id: signUpData.user.id,
-                        firstname: signupform.firstname,
-                        lastname: signupform.lastname,
-                        email: signupform.email
-                    });
-            if (profileError) alert(profileError);
-            if (profileData) console.log("profileData", profileData);
-        };
+        if (profileError) alert(profileError);
+        if (profileData) {
+            navigate("/profile");
+        }
     };
+
 
 
     return (
@@ -58,44 +45,38 @@ const EditProfile = () => {
             <div className="min-h-screen flex flex-col">
                 <div className="flex justify-center items-center flex-1">
                     <Card>
-                        <h1 className="text-xl font-bold">Sign Up</h1>
+                        <h1 className="text-xl font-bold">Edit Profile</h1>
                         <form onSubmit={handleSubmit}>
                             <Input
                                 name="firstname"
                                 placeholder="Enter your First Name"
                                 label="Firstname"
                                 type="text"
+                                defaultValue={profile?.firstname}
                             />
-
                             <Input
                                 name="lastname"
                                 placeholder="Enter your Last Name"
                                 label="Lastname"
                                 type="text"
+                                defaultValue={profile?.lastname}
                             />
-
                             <Input
                                 name="email"
                                 placeholder="Enter your Email"
                                 label="Email"
                                 type="email"
-                            />
-
-                            <Input
-                                name="password"
-                                placeholder="Enter your Password"
-                                label="Password"
-                                type="password"
+                                defaultValue={profile?.email}
                             />
                             <button className="btn btn-primary rounded-full mt-5">
-                                <SendIcon /> Submit
+                                <SendIcon className="text-sm" /> Submit
                             </button>
-
                         </form>
                     </Card>
                 </div>
             </div>
         </MainLayout>
     );
-}
-export default EditProfile
+};
+
+export default EditProfile;

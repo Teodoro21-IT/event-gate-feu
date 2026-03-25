@@ -8,7 +8,7 @@ import { SessionContext } from "../contexts/SessionContext";
 import { useNavigate } from "react-router";
 
 const Login = () => {
-    const session = useContext(SessionContext);
+    const { session } = useContext(SessionContext);
     const navigate = useNavigate();
 
     useEffect(() => {

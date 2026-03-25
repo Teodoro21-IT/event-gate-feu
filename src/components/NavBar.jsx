@@ -8,7 +8,7 @@ import supabase from "../utils/supabase";
 import Profile from "../pages/Profile";
 
 const NavBar = () => {
-    const session = useContext(SessionContext);
+    const { session } = useContext(SessionContext);
 
     const handleLogout = async () => {
         const { error } = await supabase.auth.signOut();
@@ -143,6 +143,7 @@ const NavBar = () => {
                                         />
                                     </div>
                                 </div>
+
                                 <ul
                                     tabIndex="-1"
                                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"

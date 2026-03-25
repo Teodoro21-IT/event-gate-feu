@@ -12,6 +12,7 @@ import EditProfile from './pages/EditProfile';
 function App() {
 
   const [session, setSession] = useState(null)
+  const [profile, setProfile] = useState(null)
 
   useEffect(() => {
     const {
@@ -21,6 +22,7 @@ function App() {
         console.log(session, session);
         if (event === 'SIGNED_OUT') {
           setSession(null);
+
         } else if (session) {
           setSession(session);
         }
@@ -30,10 +32,28 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select()
+        .eq("id", session.user.id)
+        .single();
+
+      if (error) console.error(error);
+      if (data) setProfile(data);
+      setLoading(false);
+    }
+
+    if (session) {
+      fetchProfile();
+    }
+  }, [session]);
+
 
   return (
 
-    <SessionContext.Provider value={session} >
+    <SessionContext.Provider value={{ session, profile }} >
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/sign-up" element={<SignUp />} />

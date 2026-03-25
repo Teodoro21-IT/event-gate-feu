@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import EditIcon from '../components/icons/EditIcon';
 
 const Profile = () => {
-    const session = useContext(SessionContext);
+    const { session } = useContext(SessionContext);
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -81,19 +81,6 @@ const Profile = () => {
                                     <p className="text-slate-700 font-semibold text-lg">{profile?.lastname || "—"}</p>
                                 </div>
                             </div>
-
-                            <div className="flex items-center justify-between p-4 bg-slate-50/50 rounded-2xl border border-slate-100">
-                                <div className="space-y-1">
-                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Account Status</p>
-                                    <div className="flex items-center gap-2.5">
-                                        <span className="relative flex h-2 w-2">
-                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                                        </span>
-                                        <span className="text-emerald-700 font-bold text-xs uppercase tracking-wider">Verified Member</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         {/* Edit Button - High Contrast Premium Look */}
@@ -110,10 +97,7 @@ const Profile = () => {
                     </div>
                 </div>
 
-                {/* Optional Footer Breadcrumb */}
-                <p className="mt-8 text-[11px] font-bold text-slate-300 uppercase tracking-[0.3em]">
-                    Settings &bull; Security &bull; Privacy
-                </p>
+
             </div>
         </MainLayout>
     )
