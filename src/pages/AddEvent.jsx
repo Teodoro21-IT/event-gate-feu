@@ -7,8 +7,7 @@ const AddEvent = () => {
 
     return (
         <MainLayout>
-            <EventFrom />awds
-
+            <EventFrom />
         </MainLayout>
     );
 };

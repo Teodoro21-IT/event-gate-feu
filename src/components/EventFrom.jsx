@@ -3,10 +3,11 @@ import Input from './form/Input'
 import supabase from '../utils/supabase';
 import { useNavigate } from 'react-router';
 
-export const EventFrom = () => {
+export const EventFrom = ({ eventData = null }) => {
     const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
+    const insertEvent = async (event) => {
+        console.log("insertEvent");
         event.preventDefault();
         const formData = new FormData(event.target);
         const formDataObject = Object.fromEntries(formData.entries());
@@ -20,6 +21,14 @@ export const EventFrom = () => {
         if (eventError) alert(eventError);
         if (eventData) console.log(eventData);
         navigate("/manage-events");
+    }
+
+    const handleSubmit = (formevent) => {
+        formevent.preventDefault();
+        if (!eventData) {
+            insertEvent(formevent);
+        }
+
     };
 
 
@@ -34,6 +43,7 @@ export const EventFrom = () => {
                             label="Title"
                             placeholder="Enter Title"
                             name="title"
+
                         />
                         <Input
                             type="date"

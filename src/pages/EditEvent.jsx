@@ -4,7 +4,7 @@ import { useParams } from 'react-router'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import supabase from '../utils/supabase'
-
+import { EventFrom } from '../components/EventFrom'
 
 
 const EditEvent = () => {
@@ -29,7 +29,9 @@ const EditEvent = () => {
 
 
     return (
-        <MainLayout>{event?.title} awdaSda      </MainLayout>
+        <MainLayout>
+            <EventFrom eventData={event} />
+        </MainLayout>
     )
 };
 
