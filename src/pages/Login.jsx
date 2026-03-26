@@ -15,7 +15,7 @@ const Login = () => {
         if (profile?.role === "user") {
             navigate("/");
         }
-        else if (profile?.role === "admin") {
+        if (profile?.role === "admin") {
             navigate("/manage-events");
         }
     }, [profile, navigate]);
