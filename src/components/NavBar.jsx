@@ -26,14 +26,14 @@ const NavBar = () => {
                     >
                         {/* Animated Logo Icon */}
                         <div className="relative">
-                            <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-primary to-secondary opacity-30 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                            <div className="absolute -inset-1 rounded-xl bg-linear-to-r from-primary to-secondary opacity-30 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                             <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-base-100 shadow-xl border border-white/10 group-hover:rotate-6 transition-transform">
                                 <span className="text-primary font-black text-2xl italic tracking-tighter">E</span>
                             </div>
                         </div>
 
                         <div className="hidden sm:flex flex-col leading-none">
-                            <span className="text-xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-base-content to-base-content/60 group-hover:from-primary group-hover:to-secondary transition-all">
+                            <span className="text-xl font-black tracking-tighter bg-clip-text text-transparent bg-linear-to-r from-base-content to-base-content/60 group-hover:from-primary group-hover:to-secondary transition-all">
                                 EVENT<span className="italic opacity-80">GATE</span>
                             </span>
                             <span className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40 mt-1">Global Events</span>
@@ -53,10 +53,10 @@ const NavBar = () => {
                         }
                     >
                         <span>Overview</span>
-                        <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+                        <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
                     </NavLink>
 
-                    <div className="h-6 w-[1px] bg-base-content/10 mx-2 hidden md:block"></div>
+                    <div className="h-6 w-px bg-base-content/10 mx-2 hidden md:block"></div>
 
 
                     {/* --- AUTH / PROFILE SECTION --- */}
@@ -69,7 +69,7 @@ const NavBar = () => {
 
                             <NavLink
                                 to="/sign-up"
-                                className="btn btn-primary btn-sm h-11 rounded-2xl px-6 border-none bg-gradient-to-tr from-primary to-secondary hover:shadow-[0_0_20px_rgba(var(--p),0.4)] transition-all duration-300"
+                                className="btn btn-primary btn-sm h-11 rounded-2xl px-6 border-none bg-linear-to-tr from-primary to-secondary hover:shadow-[0_0_20px_rgba(var(--p),0.4)] transition-all duration-300"
                             >
                                 Sign Up
                             </NavLink>
