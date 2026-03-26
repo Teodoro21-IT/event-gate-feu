@@ -1,5 +1,5 @@
 import MainLayout from "../layouts/MainLayout";
-import { EventFrom } from "../components/EventFrom";
+import { EventForm } from "../components/EventForm";
 
 const AddEvent = () => {
 
@@ -7,7 +7,7 @@ const AddEvent = () => {
 
     return (
         <MainLayout>
-            <EventFrom />
+            <EventForm />
         </MainLayout>
     );
 };

@@ -160,6 +160,12 @@ const NavBar = () => {
                         </NavLink>
                     )}
 
+                    {profile?.role === "user" && (
+                        <NavLink to="/event" className="btn btn-secondary mr-5 rounded-full btn-outline">
+                            Events
+                        </NavLink>
+                    )}
+
 
                 </div>
             </div>

@@ -1,9 +1,8 @@
-import React from 'react'
 import Input from './form/Input'
 import supabase from '../utils/supabase';
 import { useNavigate } from 'react-router';
 
-export const EventFrom = ({ eventData = null }) => {
+export const EventForm = ({ eventData = null }) => {
     const navigate = useNavigate();
 
     const insertEvent = async (event) => {
@@ -21,12 +20,30 @@ export const EventFrom = ({ eventData = null }) => {
         if (eventError) alert(eventError);
         if (eventData) console.log(eventData);
         navigate("/manage-events");
-    }
+    };
+
+    const updateEvent = async (formEvent) => {
+        const formData = new FormData(formEvent.target);
+        const formDataObject = Object.fromEntries(formData.entries());
+
+        const { data: eventDataResult, error: eventError } = await supabase
+            .from("events")
+            .update(formDataObject)
+            .eq("id", eventData.id)
+            .select()
+            .single();
+        if (eventError) alert(eventError);
+        if (eventDataResult) navigate("/manage-events");
+    };
 
     const handleSubmit = (formevent) => {
         formevent.preventDefault();
+
         if (!eventData) {
             insertEvent(formevent);
+        }
+        else {
+            updateEvent(formevent);
         }
 
     };
@@ -43,37 +60,42 @@ export const EventFrom = ({ eventData = null }) => {
                             label="Title"
                             placeholder="Enter Title"
                             name="title"
-
+                            defaultValue={eventData?.title}
                         />
                         <Input
                             type="date"
                             label="Start Date"
                             placeholder="Select Start Date"
                             name="start_date"
+                            defaultValue={eventData?.start_date}
                         />
                         <Input
                             type="date"
                             label="End Date"
                             placeholder="Select End Date"
                             name="end_date"
+                            defaultValue={eventData?.end_date}
                         />
                         <Input
                             type="time"
                             label="Start Time"
                             placeholder="Select Start Time"
                             name="start_time"
+                            defaultValue={eventData?.start_time}
                         />
                         <Input
                             type="time"
                             label="End Time"
                             placeholder="Select End Time"
                             name="end_time"
+                            defaultValue={eventData?.end_time}
                         />
                         <Input
                             type="text"
                             label="Location"
                             placeholder="Enter Location"
                             name="location"
+                            defaultValue={eventData?.location}
                         />
                     </div>
                     <div className="flex-1">
@@ -84,7 +106,9 @@ export const EventFrom = ({ eventData = null }) => {
                                 placeholder="Description"
                                 rows={20}
                                 name="description"
-                            ></textarea>
+                            >
+                                {eventData?.description}
+                            </textarea>
                         </fieldset>
                     </div>
                 </div>
@@ -95,5 +119,7 @@ export const EventFrom = ({ eventData = null }) => {
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};
+
+export default EventForm;
