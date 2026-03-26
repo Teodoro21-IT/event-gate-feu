@@ -39,10 +39,6 @@ const Login = () => {
         if (data) { console.log(data) };
     };
 
-
-
-
-
     return (
         <MainLayout>
             <div className="min-h-screen flex flex-col">

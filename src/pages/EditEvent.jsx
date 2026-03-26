@@ -29,8 +29,7 @@ const EditEvent = () => {
 
 
     return (
-        <MainLayout>{event?.title} awdaSda
-        </MainLayout>
+        <MainLayout>{event?.title} awdaSda      </MainLayout>
     )
 };
 

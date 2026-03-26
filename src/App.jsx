@@ -36,6 +36,25 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select()
+        .eq("id", session.user.id)
+        .single();
+
+      if (error) alert(error);
+      if (data) {
+        setProfile(data);
+      }
+    };
+
+    if (session) {
+      fetchProfile();
+    }
+  }, [session]);
+
 
 
   return (
